@@ -1,0 +1,20 @@
+<div [ngClass]="menu.children.length > 0 ? 'panel panel-primary' : 'panel panel-default'">
+  <div class="panel-heading" role="tab">
+    <h4 class="panel-title">
+      <a data-toggle="collapse"
+         [href]="'#' + removeSpaceFromMenuName(menu.name)"
+         aria-expanded=false
+         [attr.aria-controls]="removeSpaceFromMenuName(menu.name)">
+        {{ menu.name }}
+        <span class="pull-right caret" *ngIf="menu.children.length > 0"></span>
+      </a>
+    </h4>
+  </div>
+  <div *ngIf="menu.children.length > 0"
+       [id]="removeSpaceFromMenuName(menu.name)" class="panel-collapse collapse" role="tabpanel">
+    <div class="panel-body" *ngFor="let child of menu.children">
+      <app-sub-menu [menu]="child"></app-sub-menu>
+    </div>
+  </div>
+</div>
+
